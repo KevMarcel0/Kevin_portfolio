@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: stg_nyc_neighborhood_sales
+    description: >
+      Cleaned NYC Dept. of Finance neighborhood sales. One row per
+      borough / neighborhood / home type / year. Boroughs standardized,
+      numeric prices cast, deduplicated on the natural key.
+    columns:
+      - name: sale_data_record_id
+        description: Composite natural key (borough-neighborhood-type-year).
+        tests:
+          - unique
+          - not_null
+      - name: standardized_borough
+        description: NYC borough standardized to the five canonical names.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Manhattan', 'Bronx', 'Brooklyn', 'Queens', 'Staten Island', 'UNKNOWN']
+      - name: total_number_of_sales
+        description: Number of recorded sales (non-negative integer).
+        tests:
+          - not_null
+      - name: average_sale_price_usd
+        description: Average sale price in USD.
+
+  - name: stg_nyc_311_dot
+    description: >
+      Cleaned NYC 311 service requests filtered to the Dept. of Transportation,
+      last 7 years. Timestamps parsed, zips validated, boroughs standardized,
+      deduplicated on unique_key (latest record wins).
+    columns:
+      - name: request_id
+        description: Unique 311 service request id.
+        tests:
+          - unique
+          - not_null
+      - name: created_date
+        description: Parsed timestamp the request was created.
+        tests:
+          - not_null
+      - name: borough
+        description: Standardized NYC borough (or 'UNKNOWN or CITYWIDE').
+        tests:
+          - not_null
+      - name: status
+        description: Upper-cased request status.

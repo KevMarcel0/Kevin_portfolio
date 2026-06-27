@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: borough_year_311_sales
+    description: >
+      Borough x year roll-up combining total DOT complaints with total home
+      sales and average median price, plus a complaints-per-sale ratio — the
+      core "where is demand high but quality-of-life friction low" signal.
+    columns:
+      - name: year
+        tests: [not_null]
+      - name: borough
+        tests: [not_null]
+      - name: complaints_per_sale
+        description: total_dot_complaints / total_home_sales (SAFE_DIVIDE).
+
+  - name: neighborhood_sales_combined_summary
+    description: >
+      Neighborhood-level sales enriched with the borough complaint context and
+      a derived complaints-per-neighborhood-sale metric for investment screening.
+    columns:
+      - name: year
+        tests: [not_null]
+      - name: neighborhood
+        tests: [not_null]
+
+  - name: complaints_by_year_borough_type
+    description: DOT complaints aggregated by year, borough and complaint type.
+
+  - name: home_type_sold_by_year
+    description: Home sales volume and pricing aggregated by home type and year.

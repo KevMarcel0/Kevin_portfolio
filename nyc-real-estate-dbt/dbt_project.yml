@@ -1,0 +1,35 @@
+name: 'nyc_real_estate'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+# See profiles.example.yml for the BigQuery connection template.
+profile: 'nyc_real_estate'
+
+# Paths
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Model materialization defaults, layered by folder.
+#   staging   -> views   (cheap, always-fresh cleaning layer)
+#   marts     -> tables  (dimensional model: dims + facts)
+#   analytics -> tables  (business-ready aggregates)
+models:
+  nyc_real_estate:
+    staging:
+      +materialized: view
+      +schema: staging
+    marts:
+      +materialized: table
+      +schema: marts
+    analytics:
+      +materialized: table
+      +schema: analytics

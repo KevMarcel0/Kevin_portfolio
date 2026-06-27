@@ -1,0 +1,111 @@
+version: 2
+
+models:
+  # ---------- Neighborhood sales star ----------
+  - name: dim_neighborhood
+    description: One row per unique borough + neighborhood.
+    columns:
+      - name: neighborhood_key
+        description: Surrogate key (hash of borough + neighborhood).
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_home_type
+    description: One row per unique home type (apartment, condo, etc.).
+    columns:
+      - name: home_type_key
+        description: Surrogate key (hash of type_of_home).
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_sales_year
+    description: One row per sales year.
+    columns:
+      - name: year_key
+        description: Surrogate key (hash of year).
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_neighborhood
+    description: >
+      Sales fact at borough / neighborhood / home type / year grain.
+      Foreign keys validated against their dimensions via relationships tests.
+    columns:
+      - name: fact_key
+        description: Surrogate key for the sales fact.
+        tests:
+          - unique
+          - not_null
+      - name: neighborhood_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_neighborhood')
+              field: neighborhood_key
+      - name: home_type_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_home_type')
+              field: home_type_key
+      - name: year_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_sales_year')
+              field: year_key
+      - name: number_of_sales
+        description: Number of sales for the grain.
+
+  # ---------- 311 DOT requests star ----------
+  - name: dim_complaint
+    description: One row per unique complaint_type + descriptor.
+    columns:
+      - name: complaint_key
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_location
+    description: One row per unique location (borough, zip, lat/long, street).
+    columns:
+      - name: location_key
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_date
+    description: Date dimension derived from request created timestamps.
+    columns:
+      - name: date_key
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_311_requests
+    description: >
+      311 DOT service-request fact, one row per request, with foreign keys
+      to the complaint, location and date dimensions.
+    columns:
+      - name: service_request_id
+        tests:
+          - unique
+          - not_null
+      - name: complaint_key
+        tests:
+          - relationships:
+              to: ref('dim_complaint')
+              field: complaint_key
+      - name: location_key
+        tests:
+          - relationships:
+              to: ref('dim_location')
+              field: location_key
+      - name: date_key
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
