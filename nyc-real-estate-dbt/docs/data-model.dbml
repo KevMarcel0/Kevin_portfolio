@@ -1,0 +1,61 @@
+
+Table dim_location {
+  location_id integer [pk]
+  borough_id integer
+  zip_code varchar(10)
+  neighborhood_name varchar(100)
+}
+Table dim_borough {
+  borough_id integer [pk]
+  borough_name varchar(50)
+}
+Table dim_date {
+  date_id integer [pk]
+  full_date date
+  day integer
+  month integer
+  month_name varchar(20)
+  quarter integer
+  year integer
+
+}
+Ref: dim_location.borough_id > dim_borough.borough_id
+
+
+Table fact_311_service_request {
+  id integer [pk]
+  request_key integer
+  complaint_id integer
+  location_id integer
+  date_id integer
+  status varchar(30)
+}
+Table dim_complaint {
+  complaint_id integer [pk]
+  complaint_type varchar(100)
+  descriptor varchar(120)
+}
+Ref: fact_311_service_request.complaint_id > dim_complaint.complaint_id
+Ref: fact_311_service_request.location_id > dim_location.location_id
+Ref: fact_311_service_request.date_id > dim_date.date_id
+
+Table fact_sales {
+  fact_id integer [pk]
+  location_id integer
+  home_type_id integer
+  date_id integer
+  number_of_sales integer
+  lowest_sale_price numeric
+  average_sale_price numeric
+  median_sale_price numeric
+  highest_sale_price numeric
+}
+Table dim_home_type {
+  home_type_id integer [pk]
+  type_code varchar(2)
+  type_desc varchar(50)
+  family_count integer
+}
+Ref: fact_sales.location_id > dim_location.location_id
+Ref: fact_sales.date_id > dim_date.date_id
+Ref: fact_sales.home_type_id > dim_home_type.home_type_id

@@ -19,12 +19,13 @@ cleaned AS (
         ) AS sale_data_record_id,
 
         -- Standardize borough (using the standard NYC boroughs)
+        -- 2010-2021 rows use borough names, 2022-2024 rows use DOF codes 1-5
         CASE
-            WHEN UPPER(TRIM(borough)) IN ('MANHATTAN', 'NEW YORK COUNTY') THEN 'Manhattan'
-            WHEN UPPER(TRIM(borough)) IN ('BRONX', 'THE BRONX') THEN 'Bronx'
-            WHEN UPPER(TRIM(borough)) IN ('BROOKLYN', 'KINGS COUNTY') THEN 'Brooklyn'
-            WHEN UPPER(TRIM(borough)) IN ('QUEENS', 'QUEEN', 'QUEENS COUNTY') THEN 'Queens'
-            WHEN UPPER(TRIM(borough)) IN ('STATEN ISLAND', 'RICHMOND COUNTY') THEN 'Staten Island'
+            WHEN UPPER(TRIM(CAST(borough AS STRING))) IN ('1', 'MANHATTAN', 'NEW YORK COUNTY') THEN 'Manhattan'
+            WHEN UPPER(TRIM(CAST(borough AS STRING))) IN ('2', 'BRONX', 'THE BRONX') THEN 'Bronx'
+            WHEN UPPER(TRIM(CAST(borough AS STRING))) IN ('3', 'BROOKLYN', 'KINGS COUNTY') THEN 'Brooklyn'
+            WHEN UPPER(TRIM(CAST(borough AS STRING))) IN ('4', 'QUEENS', 'QUEEN', 'QUEENS COUNTY') THEN 'Queens'
+            WHEN UPPER(TRIM(CAST(borough AS STRING))) IN ('5', 'STATEN ISLAND', 'RICHMOND COUNTY') THEN 'Staten Island'
             ELSE 'UNKNOWN'
         END AS standardized_borough,
 

@@ -32,12 +32,15 @@ factors are controlled for? Simple and multiple logistic regression.
 - → [`crash-fatality-regression/`](crash-fatality-regression/)
 
 ### 3. 🏙️ [NYC Real Estate Investment Analytics (dbt + BigQuery)](nyc-real-estate-dbt/)
-A tested **dbt + BigQuery** warehouse joining NYC Dept. of Finance neighborhood
-sales with 311 DOT complaints to find neighborhoods with strong demand and low
-infrastructure friction. Standard **staging → marts (star schema) → analytics**
-layering with source, uniqueness, and fact-to-dimension `relationships` tests.
+Team project (CIS 9440, Baruch). A tested **dbt + BigQuery** warehouse joining NYC
+Dept. of Finance neighborhood sales with 4.3 million 311 DOT complaints, loaded with a
+Google Cloud Function, to find where people buy 1-3 family homes with fewer
+infrastructure complaints.
 
-- **Stack:** dbt, SQL, Google BigQuery, dbt_utils, NYC Open Data.
+- **Found:** Staten Island had the fewest DOT complaints per home sale (4.0) and the
+  lowest prices, Queens had the most sales (7.7 complaints per sale), and the Bronx
+  costs about the same as Staten Island with over 3 times the complaints.
+- **Stack:** Cloud Storage, Cloud Functions, BigQuery, dbt, SQL, Looker.
 - → [`nyc-real-estate-dbt/`](nyc-real-estate-dbt/)
 
 ---
