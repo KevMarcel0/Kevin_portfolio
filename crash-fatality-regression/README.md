@@ -4,6 +4,8 @@
 
 Team project for CIS 9660 at Baruch, built with two classmates. A report using national crash data found Ford had the highest share of fatal crashes from 2017 to 2019, so we tested whether that holds up in NYC crash records once other factors are accounted for.
 
+**My role:** ran the Python analysis, both logistic regression models in statsmodels and the output report (`Logit.py`).
+
 **Tools:** Python (pandas, statsmodels, numpy, scipy), Excel for data prep
 
 ## The Data

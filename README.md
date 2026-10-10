@@ -21,6 +21,7 @@ What drives late deliveries, and what do they cost? 96,470 real delivered orders
 Team project (CIS 9660, group of three). Are Fords more likely to be in fatal crashes once driver, vehicle, and timing factors are controlled for? Simple and multiple logistic regression on 64,791 NYC crash records.
 
 - **Found:** on their own, Fords had about 2.3 times the odds of a fatal crash, but the effect wasn't significant once other factors were added. Unlicensed drivers had about 6 times the odds.
+- **My role:** ran the Python analysis, both logistic regression models in statsmodels.
 - **Tools:** Python (statsmodels, pandas, numpy, scipy), Excel
 - **Folder:** [crash-fatality-regression](crash-fatality-regression/)
 
