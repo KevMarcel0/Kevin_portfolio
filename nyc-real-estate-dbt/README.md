@@ -4,6 +4,8 @@
 
 Team project for CIS 9440 (Data Warehousing & Analytics) at Baruch, built with three classmates. We modeled NYC Department of Finance neighborhood sales against 311 Department of Transportation complaints for a real estate investor looking for long-term rental properties.
 
+**My role:** team coordinator. I kept the four of us on track with deadlines and tasks across 11 meetings and made sure information got passed along clearly. The team's dbt staging and mart tables were built in my BigQuery project.
+
 **Tools:** Google Cloud Functions, BigQuery, dbt, SQL, Looker Studio
 
 ## The Data
