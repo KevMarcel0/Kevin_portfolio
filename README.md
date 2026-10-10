@@ -40,7 +40,7 @@ infrastructure complaints.
 - **Found:** Staten Island had the fewest DOT complaints per home sale (4.0) and the
   lowest prices, Queens had the most sales (7.7 complaints per sale), and the Bronx
   costs about the same as Staten Island with over 3 times the complaints.
-- **My role:** team coordinator for a group of four; the team's dbt warehouse ran in my BigQuery project.
+- **My role:** team coordinator for a group of four. I created the dbt staging models and several of the mart tables used for the visuals.
 - **Stack:** Cloud Functions, BigQuery, dbt, SQL, Looker Studio.
 - → [`nyc-real-estate-dbt/`](nyc-real-estate-dbt/)
 
