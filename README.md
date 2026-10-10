@@ -4,7 +4,7 @@ Data & Business Analyst (M.S. Business Analytics, Baruch Zicklin). I build
 end-to-end analytics: modeling messy real-world data, writing tested SQL/dbt
 pipelines, and turning the results into clear business decisions.
 
-**Toolbox:** SQL · Python (pandas, statsmodels) · dbt · BigQuery · SQLite · Power BI · data visualization
+**Toolbox:** SQL · Python (pandas, statsmodels) · dbt · BigQuery · Excel (XLOOKUP, pivot tables) · Tableau
 
 📍 New York, NY · [LinkedIn](https://www.linkedin.com/in/Kevin-marcelin-data-analyst/) · kevinmarcelin7@gmail.com
 
