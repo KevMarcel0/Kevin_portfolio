@@ -4,7 +4,7 @@
 
 Team project for CIS 9440 (Data Warehousing & Analytics) at Baruch, built with three classmates. We modeled NYC Department of Finance neighborhood sales against 311 Department of Transportation complaints for a real estate investor looking for long-term rental properties.
 
-**Tools:** Google Cloud Storage, Cloud Functions, BigQuery, dbt, SQL, Looker
+**Tools:** Google Cloud Functions, BigQuery, dbt, SQL, Looker Studio
 
 ## The Data
 
@@ -13,10 +13,11 @@ Team project for CIS 9440 (Data Warehousing & Analytics) at Baruch, built with t
 
 ## Pipeline
 
-1. Uploaded the raw CSVs to Google Cloud Storage.
-2. A Python Cloud Function reads them, cleans the column names, and loads them into BigQuery.
-3. dbt builds staging models, two star schemas, and analytics tables on top.
-4. Looker for the final visuals.
+1. A Python Cloud Function pulls the data from NYC Open Data (Socrata API), cleans the column names, and loads it into BigQuery.
+2. dbt builds staging models, two star schemas, and analytics tables on top.
+3. Looker Studio for the final visuals.
+
+Full write-up: [`docs/final-report.md`](docs/final-report.md)
 
 ```
 Raw (BigQuery: nyc_sales_raw_data)
@@ -51,7 +52,13 @@ models/analytics/    business-ready tables
 
 ## What We Found
 
-DOT complaints per home sale by borough, 2019-2024:
+1. **Street Condition is the biggest DOT complaint**, followed by Traffic Signal and Street Light. Roadway and traffic problems drive most complaints.
+2. **Complaints don't follow a steady trend.** They jumped from 2018 to 2019, dipped in 2020, peaked around 2022, and leveled off through 2025.
+3. **Higher prices don't mean fewer complaints.** At the neighborhood level there was no clear link between median sale price and complaint volume. Complaints seem to follow how busy and dense an area is, not how wealthy it is.
+4. **One-family homes are about half of all sales every year**, then two-family, then three-family, and that mix barely changes.
+5. **At the borough level, Queens and Staten Island have fewer complaints at moderate prices**, while Manhattan and Brooklyn combine higher prices with more complaints.
+
+DOT complaints per home sale by borough, 2019-2024 (calculated after the borough fix above):
 
 | Borough | Home sales | DOT complaints | Complaints per sale | Avg median price |
 |---|---|---|---|---|
@@ -61,10 +68,10 @@ DOT complaints per home sale by borough, 2019-2024:
 | Bronx | 14,352 | 189,023 | 13.2 | $743K |
 | Manhattan | 1,284 | 229,521 | 178.8 | $5.65M |
 
-1. Staten Island had the fewest complaints per sale (4.0) and the lowest median prices.
-2. Queens had the most sales by far (51,193) with the second lowest complaint rate.
-3. The Bronx is priced about the same as Staten Island but has more than 3 times the complaints per sale.
-4. Manhattan barely sells 1-3 family homes, so its number is high mostly because there are so few sales.
+- Staten Island had the fewest complaints per sale (4.0) and the lowest median prices.
+- Queens had the most sales by far (51,193) with the second lowest complaint rate.
+- The Bronx is priced about the same as Staten Island but has more than 3 times the complaints per sale.
+- Manhattan barely sells 1-3 family homes, so its number is high mostly because there are so few sales.
 
 ## Recommendation
 
