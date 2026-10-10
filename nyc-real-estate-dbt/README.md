@@ -4,7 +4,7 @@
 
 Team project for CIS 9440 (Data Warehousing & Analytics) at Baruch, built with three classmates. We modeled NYC Department of Finance neighborhood sales against 311 Department of Transportation complaints for a real estate investor looking for long-term rental properties.
 
-**My role:** team coordinator, and a big part of building the dbt warehouse. I created the staging models and several of the mart tables used for the visuals, built in my BigQuery project. I also kept the four of us on track with deadlines and tasks across 11 meetings.
+**My role:** team coordinator. In dbt I built the staging models, three dimension tables (`dim_neighborhood`, `dim_home_type`, `dim_complaint`), and the `home_type_sold_by_year` analytics table behind the housing type chart. I also kept the four of us on track with deadlines and tasks across 11 meetings.
 
 **Tools:** Google Cloud Functions, BigQuery, dbt, SQL, Looker Studio
 
