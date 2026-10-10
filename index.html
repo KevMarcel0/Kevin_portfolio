@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kevin Marcelin — Data &amp; Business Analyst</title>
-<meta name="description" content="Data & Business Analyst portfolio — SQL, Python, dbt, BigQuery. Projects in logistics analytics, statistical modeling, and the modern data stack." />
+<title>Kevin Marcelin | Data Analyst</title>
+<meta name="description" content="Data analyst portfolio: SQL, Python, dbt, BigQuery. Projects in logistics analytics, statistical modeling, and the modern data stack." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -106,6 +106,9 @@
   .project p { color: var(--muted); margin-bottom: 16px; }
   .finding { background: var(--bg-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 16px; font-size: 0.92rem; }
   .finding b { color: var(--text); }
+  .rec { background: var(--bg-soft); border-left: 3px solid var(--accent-2); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 16px; font-size: 0.92rem; }
+  .rec b { color: var(--text); }
+  .project-img { display: block; width: 100%; max-width: 100%; border-radius: 10px; border: 1px solid var(--line); margin-bottom: 18px; }
   .project-foot { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
   .project-links { display: flex; gap: 14px; }
   .project-links a { font-size: 0.9rem; font-weight: 600; color: var(--accent); display: inline-flex; align-items: center; gap: 6px; }
@@ -138,21 +141,21 @@
   <!-- HERO -->
   <section class="hero">
     <div class="wrap">
-      <div class="eyebrow">Data &amp; Business Analyst</div>
-      <h1>I turn messy, real-world data into<br /><span class="grad">decisions people can act on.</span></h1>
+      <div class="eyebrow">Data Analyst · Logistics &amp; Operations</div>
+      <h1>Kevin Marcelin</h1>
       <p class="lead">
-        M.S. Business Analytics candidate at Baruch Zicklin. I build end-to-end analytics —
-        modeling raw data, writing tested SQL/dbt pipelines, and translating the results
-        into clear business answers.
+        I analyze logistics and operations data: why deliveries run late, where freight costs
+        get out of hand, and what to change. I clean messy data in Python, analyze it in SQL
+        and Excel, and build dashboards in Tableau. M.S. Business Analytics candidate at Baruch.
       </p>
       <div class="cta">
-        <a class="btn btn-primary" href="#projects">View Projects →</a>
-        <a class="btn btn-ghost" href="https://github.com/KevMarcel0/Kevin_portfolio" target="_blank" rel="noopener">GitHub Repo</a>
+        <a class="btn btn-primary" href="#projects">View Projects</a>
+        <a class="btn btn-ghost" href="https://github.com/KevMarcel0" target="_blank" rel="noopener">GitHub</a>
       </div>
       <div class="meta-row">
-        <span>📍 New York, NY</span>
-        <span>🎓 M.S. Business Analytics (June 2027)</span>
-        <span>💬 English / French</span>
+        <span>New York, NY</span>
+        <span>M.S. Business Analytics (June 2027)</span>
+        <span>Bilingual: English and French</span>
       </div>
     </div>
   </section>
@@ -172,12 +175,12 @@
           </p>
           <p>
             My projects span <strong>SQL and Python analytics</strong>, <strong>Excel and Tableau reporting</strong>,
-            <strong>statistical modeling</strong>, and the <strong>modern data stack (dbt + BigQuery)</strong> — including work on real public
-            datasets with hundreds of thousands of records, not toy examples.
+            <strong>statistical modeling</strong>, and the <strong>modern data stack (dbt + BigQuery)</strong>.
+            Every project uses real public data, not toy examples.
           </p>
           <p>
-            Before analytics, I built a track record for accuracy and reliability across operations,
-            logistics, and customer-facing roles — the kind of detail-orientation that data work lives or dies on.
+            Before analytics, I worked in operations, logistics, and customer-facing roles. That's
+            where I learned how much small mistakes cost, and why I check my numbers before I trust them.
           </p>
         </div>
         <div class="facts">
@@ -246,15 +249,20 @@
           <span class="pnum">01</span>
         </div>
         <div class="role">Python · SQL · Excel · Tableau · 96,470 real orders</div>
+        <img class="project-img" src="images/delivery-dashboard.png" alt="Tableau dashboard showing on-time delivery by state, on-time rate by month, freight cost vs weight, and delay distribution" loading="lazy" />
         <p>
           What drives late deliveries, and what do they cost? Cleaned and joined six tables of
           real Olist e-commerce data in Python, rolling order items up before the join so freight
           wasn't double counted, then analyzed it in BigQuery, Excel, and Tableau.
         </p>
         <div class="finding">
-          🔎 <b>Key finding:</b> <b>93.2%</b> of orders arrived on time, but the misses cluster in
+          <b>Finding:</b> <b>93.2%</b> of orders arrived on time, but the misses cluster in
           the north and northeast, and light, low-value items like electronics pay up to
           <b>68.7%</b> of their order value in freight.
+        </div>
+        <div class="rec">
+          <b>Recommendation:</b> add a few days of buffer to short delivery promises on north and
+          northeast routes, where they miss most often.
         </div>
         <div class="project-foot">
           <div class="tags">
@@ -262,7 +270,7 @@
             <span class="tag">Excel</span><span class="tag">Tableau</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/KevMarcel0/delivery-performance-analysis" target="_blank" rel="noopener">View code →</a>
+            <a href="https://github.com/KevMarcel0/delivery-performance-analysis" target="_blank" rel="noopener">View code</a>
           </div>
         </div>
       </article>
@@ -270,18 +278,22 @@
       <!-- P2 -->
       <article class="project">
         <div class="project-head">
-          <h3>Crash Fatality Risk — Logistic Regression</h3>
+          <h3>Crash Fatality Risk: Logistic Regression</h3>
           <span class="pnum">02</span>
         </div>
-        <div class="role">Python · statsmodels · 89,000+ crash records</div>
+        <div class="role">Python · statsmodels · 64,791 crash records</div>
         <p>
-          Statistical modeling on real motor-vehicle crash data: do certain vehicles carry higher
-          fatal-crash risk once driver, vehicle, and environmental factors are controlled for?
-          Built with both simple and multiple logistic regression on a formally specified design.
+          Do Ford vehicles carry a higher risk of fatal crashes once driver, vehicle, and
+          seasonal factors are controlled for? Cleaned real NYC crash data, built dummy variables,
+          and ran simple and multiple logistic regression.
         </p>
         <div class="finding">
-          🔎 <b>Approach:</b> careful data cleaning and coding, dummy-variable engineering, and honest
-          documentation of model limitations — statistics that hold up to scrutiny, not just a chart.
+          <b>Finding:</b> on their own, Fords had about <b>2.3 times</b> the odds of a fatal crash, but
+          the effect was no longer significant once other factors were added. The clearest risk
+          factor was licensing: unlicensed drivers had about <b>6 times</b> the odds.
+        </div>
+        <div class="rec">
+          <b>Recommendation:</b> target safety efforts at unlicensed drivers rather than vehicle make.
         </div>
         <div class="project-foot">
           <div class="tags">
@@ -289,7 +301,7 @@
             <span class="tag">numpy</span><span class="tag">scipy</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/KevMarcel0/Kevin_portfolio/tree/main/crash-fatality-regression" target="_blank" rel="noopener">View code →</a>
+            <a href="https://github.com/KevMarcel0/Kevin_portfolio/tree/main/crash-fatality-regression" target="_blank" rel="noopener">View code</a>
           </div>
         </div>
       </article>
@@ -304,12 +316,12 @@
         <p>
           A tested dbt + BigQuery warehouse joining NYC Dept. of Finance neighborhood sales with
           311 DOT complaints to surface neighborhoods with strong housing demand <i>and</i> low
-          infrastructure friction. Standard staging → marts → analytics layering.
+          infrastructure friction, built in staging, marts, and analytics layers.
         </p>
         <div class="finding">
-          🔎 <b>Engineering:</b> two star schemas with surrogate keys, real cleaning logic
-          (borough standardization, zip validation, dedup), and a tested data contract —
-          <b>fact-to-dimension relationships tests</b> so every row resolves correctly.
+          <b>Build:</b> two star schemas with surrogate keys, cleaning logic for borough names,
+          zip codes, and duplicates, and relationship tests so every fact row matches a real
+          dimension row.
         </div>
         <div class="project-foot">
           <div class="tags">
@@ -317,7 +329,7 @@
             <span class="tag">dbt_utils</span><span class="tag">NYC Open Data</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/KevMarcel0/Kevin_portfolio/tree/main/nyc-real-estate-dbt" target="_blank" rel="noopener">View code →</a>
+            <a href="https://github.com/KevMarcel0/Kevin_portfolio/tree/main/nyc-real-estate-dbt" target="_blank" rel="noopener">View code</a>
           </div>
         </div>
       </article>
@@ -328,9 +340,9 @@
   <section id="contact" style="background: var(--bg-soft);">
     <div class="wrap contact">
       <h2 class="section-title"><span class="num">04.</span>Get in touch</h2>
-      <p class="section-sub">Open to data analyst, business analyst, and analytics engineering roles.</p>
+      <p class="section-sub">Open to logistics, supply chain, and operations analyst roles.</p>
       <div class="contact-btns">
-        <a class="btn btn-primary" href="mailto:kevinmarcelin7@gmail.com">✉️ Email me</a>
+        <a class="btn btn-primary" href="mailto:kevinmarcelin7@gmail.com">Email me</a>
         <a class="btn btn-ghost" href="https://www.linkedin.com/in/Kevin-marcelin-data-analyst/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn btn-ghost" href="https://github.com/KevMarcel0" target="_blank" rel="noopener">GitHub</a>
       </div>
@@ -341,7 +353,7 @@
 <footer>
   <div class="wrap">
     Built by Kevin Marcelin · <span class="mono">SQL · Python · dbt</span><br />
-    © 2026 — Hosted on GitHub Pages
+    © 2026 · Hosted on GitHub Pages
   </div>
 </footer>
 
