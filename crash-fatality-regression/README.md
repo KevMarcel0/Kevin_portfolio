@@ -1,100 +1,53 @@
-# Motor Vehicle Crash Fatality Risk Analysis
-_Logistic Regression Using Real-World Crash Data_
+# Crash Fatality Risk: Logistic Regression
 
-## Overview
-This project analyzes motor vehicle crash data to identify factors associated with **fatal crash outcomes**, with a specific focus on whether **Ford vehicles** are more likely to be involved in fatal crashes once key driver, vehicle, and situational variables are controlled for.
+**Question:** Are Ford vehicles more likely to be in fatal crashes once driver, vehicle, and timing factors are controlled for?
 
-The analysis is implemented in **Python** using **statsmodels**, with both a **simple logistic regression** and a **multiple logistic regression model** that mirrors a formally specified regression design.
+Team project for CIS 9660 at Baruch, built with two classmates. A report using national crash data found Ford had the highest share of fatal crashes from 2017 to 2019, so we tested whether that holds up in NYC crash records once other factors are accounted for.
 
----
+**Tools:** Python (pandas, statsmodels, numpy, scipy), Excel for data prep
 
-## Research Question
-> Are Ford vehicles statistically associated with higher fatal crash risk compared to non-Ford vehicles, after accounting for driver characteristics, vehicle attributes, and environmental conditions?
+## The Data
 
----
+- NYC motor vehicle collision records (NYC Open Data), 2016-2024
+- 89,102 records and 27 columns before cleaning, with 449,158 missing values across the table
+- 64,791 records after cleaning, which is what the model ran on
+- Fatal crashes are rare: 38 of the 64,791 records involved a death (0.06%)
 
-## Data
-- **Source:** Motor Vehicle Collisions crash dataset  
-- **Format:** CSV  
-- **Observations:** 89,000+ crash records (post-cleaning)
-- **Target Variable:**
-  - `Fatality` → numeric copy of `WHETHER_PEOPLE_DIED`  
-    - 1 = fatal crash  
-    - 0 = non-fatal crash  
+## How It Was Cleaned
 
-Raw data is excluded from this repository due to size. The pipeline assumes the dataset is locally available.
+- Built dummy variables in Excel from the raw columns: Ford vs. other makes, weekday vs. weekend, driver sex, license status, season, rush hour (5-9 AM and 5-8 PM), vehicle age over 10 and over 20 years, and truck vs. other vehicles.
+- Removed rows with blank or unknown driver sex, blank license status, blank vehicle type, and more than 7 occupants.
+- In Python, converted every model column to numeric and dropped rows still missing a value before fitting.
 
----
+## The Model
 
-## Tech Stack
-- Python
-- pandas
-- statsmodels
-- numpy
-- scipy
-- matplotlib / seaborn
+1. **Simple:** fatal crash (yes/no) predicted by Ford alone.
+2. **Multiple:** Ford plus 12 controls (weekday, driver sex, license status, the four seasons, rush hour, number of occupants, vehicle age, and truck).
 
----
+Significance was judged at p < 0.05.
 
-## Data Preparation & Cleaning
-The analysis performs the following preprocessing steps:
+## What We Found
 
-- Converts key variables to numeric using `pd.to_numeric()` with coercion
-- Drops rows with missing values in core regression variables
-- Separates **simple** and **multiple regression datasets**
-- Ensures all regression inputs are strictly numeric before model fitting
-- Outputs all regression summaries and diagnostics to a text report (`motor.txt`)
+1. **On its own, Ford looked riskier.** In the simple model, Fords had about 2.3 times the odds of a fatal crash (p = 0.035).
+2. **That effect went away with controls.** In the full model, Ford was no longer significant (p = 0.063), so we couldn't say driving a Ford raises the chance of dying in a crash.
+3. **License status mattered most.** Crashes with a licensed driver had much lower odds of a death (p = 0.001). Put the other way, unlicensed drivers had about 6 times the odds.
+4. Driver sex, weekday, rush hour, number of occupants, vehicle age, and trucks were not significant.
 
----
+## Recommendation
 
-## Feature Engineering
-### Core Variables
-- `Fatality` – Dependent variable (binary)
-- `Ford` – Binary indicator derived from `IS_FORD`
+Put safety efforts toward unlicensed drivers, not vehicle make. The Ford headline from the national report didn't hold up once license status and the other factors were in the model.
 
-### Control Variables Used in Multiple Model
-The multiple logistic regression includes the following predictors:
+## What It Doesn't Answer
 
-- `IS_FORD`
-- `IS_WEEKDAY`
-- `DRIVER_SEX_MALE`
-- `DRIVER_WITH_LICENSE`
-- `IS_WINTER`
-- `IS_SPRING`
-- `IS_FALL`
-- `IS_SUMMER`
-- `IS_RUSH_HOUR`
-- `VEHICLE_OCCUPANTS`
-- `IS_MORE_THAN_10_YEARS_OLD`
-- `IS_MORE_THAN_20_YEARS_OLD`
-- `IS_TRUCK`
+- Speed, weather, road type, and driver age weren't in the data, and they matter a lot.
+- With only 38 fatal crashes, the estimates are noisy.
+- The full model didn't fully converge (statsmodels gave an iteration warning), and all four season variables were included alongside the constant, so they overlap. The season results, including a significant spring coefficient, shouldn't be trusted.
+- This shows associations, not causes.
 
-These variables control for **temporal effects, driver behavior, vehicle characteristics, and crash context**.
+## Files
 
----
+| File | What it is |
+|---|---|
+| `Logit.py` | Loads the cleaned CSV, runs both models, and writes the output to `motor.txt` |
 
-## Modeling Approach
-### 1. Simple Logistic Regression
-A baseline logistic regression was estimated using:
-- **Dependent variable:** `WHETHER_PEOPLE_DIED`
-- **Predictor:** `Ford`
-
-Purpose:
-- Measure the raw relationship between Ford vehicles and fatal outcomes without controls.
-
----
-
-### 2. Multiple Logistic Regression
-A fully specified logistic regression model was estimated using:
-
-- **Dependent variable:** `Fatality`
-- **Predictors:** Ford indicator + 12 control variables
-- **Estimation method:** Maximum Likelihood Estimation (`statsmodels.Logit`)
-
-A constant term was added explicitly using `sm.add_constant()`.
-
----
-
-## Model Output
-- Regression summaries are printed using `model.summary()`
-- All output is redirected to a text file:
+The crash CSV isn't included because of its size. Update the file path at the top of `Logit.py` to run it.
