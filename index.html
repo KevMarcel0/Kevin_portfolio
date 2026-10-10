@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Kevin Marcelin — Data &amp; Business Analyst</title>
-<meta name="description" content="Data & Business Analyst portfolio — SQL, Python, dbt, BigQuery. Projects in statistical modeling and the modern data stack." />
+<meta name="description" content="Data & Business Analyst portfolio — SQL, Python, dbt, BigQuery. Projects in logistics analytics, statistical modeling, and the modern data stack." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -237,13 +237,41 @@
   <section id="projects">
     <div class="wrap">
       <h2 class="section-title"><span class="num">03.</span>Projects</h2>
-      <p class="section-sub">Two end-to-end builds. Each links to full code on GitHub.</p>
+      <p class="section-sub">Three end-to-end builds. Each links to full code on GitHub.</p>
 
       <!-- P1 -->
       <article class="project">
         <div class="project-head">
-          <h3>Crash Fatality Risk — Logistic Regression</h3>
+          <h3>Delivery Performance Analysis</h3>
           <span class="pnum">01</span>
+        </div>
+        <div class="role">Python · SQL · Excel · Tableau · 96,470 real orders</div>
+        <p>
+          What drives late deliveries, and what do they cost? Cleaned and joined six tables of
+          real Olist e-commerce data in Python, rolling order items up before the join so freight
+          wasn't double counted, then analyzed it in BigQuery, Excel, and Tableau.
+        </p>
+        <div class="finding">
+          🔎 <b>Key finding:</b> <b>93.2%</b> of orders arrived on time, but the misses cluster in
+          the north and northeast, and light, low-value items like electronics pay up to
+          <b>68.7%</b> of their order value in freight.
+        </div>
+        <div class="project-foot">
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">BigQuery</span>
+            <span class="tag">Excel</span><span class="tag">Tableau</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/KevMarcel0/delivery-performance-analysis" target="_blank" rel="noopener">View code →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- P2 -->
+      <article class="project">
+        <div class="project-head">
+          <h3>Crash Fatality Risk — Logistic Regression</h3>
+          <span class="pnum">02</span>
         </div>
         <div class="role">Python · statsmodels · 89,000+ crash records</div>
         <p>
@@ -266,11 +294,11 @@
         </div>
       </article>
 
-      <!-- P2 -->
+      <!-- P3 -->
       <article class="project">
         <div class="project-head">
           <h3>NYC Real Estate Investment Analytics</h3>
-          <span class="pnum">02</span>
+          <span class="pnum">03</span>
         </div>
         <div class="role">dbt · BigQuery · star schema · data tests</div>
         <p>
